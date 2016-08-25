@@ -1,0 +1,12 @@
+*~
+*.swp
+*.o
+*.a
+*.so
+*.class
+*.log
+*.core
+*.iml
+*.class
+*.jar
+*.idea
