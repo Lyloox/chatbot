@@ -1,5 +1,19 @@
 ====================================READ ME====================================
 
+Chatbot is a bot who can talk with you.
+
+
+====================================TESTING====================================
+
+To test using istanbul and flow:
+
+$ istanbul cover _mocha -- -R spec
+$ npm run-script flow
+
+To check coding style:
+
+$ semistandart
+
 ====================================CONTACT====================================
 
 irc:  Lyloox
