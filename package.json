@@ -4,7 +4,7 @@
   "description": "agent conversationnel",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "make test",
     "flow": "flow; test $? -eq 0 -o $? -eq 2"
   },
   "repository": {
@@ -23,10 +23,14 @@
   },
   "homepage": "https://github.com/Lyloox/chatbot#readme",
   "devDependencies": {
+    "filereader": "^0.10.3",
     "flow-bin": "^0.31.1",
     "mocha": "^3.0.2"
   },
   "dependencies": {
+    "file": "^0.2.2",
+    "filereader": "^0.10.3",
+    "glob": "^7.0.6",
     "node-wit": "^4.1.0"
   }
 }

@@ -1,8 +1,10 @@
 ====================================READ ME====================================
 
-Chatbot is a bot who can talk with you.
+Chatbot is a bot who can give you the forecast of any city you want. Just ask!
 
-Run with:
+1. Add your wit.ai      key in wit.key      file at the root of the repository
+2. Add your forecast.io key in forecast.key file at the root of the repository
+3. Run with:
 
 $ make
 
