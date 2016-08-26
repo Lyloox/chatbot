@@ -2,8 +2,15 @@
 
 Chatbot is a bot who can talk with you.
 
+Run with:
+
+$ make
 
 ====================================TESTING====================================
+
+In general:
+
+$ make test
 
 To test using istanbul and flow:
 
