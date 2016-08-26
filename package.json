@@ -1,0 +1,24 @@
+{
+  "name": "chatbot",
+  "version": "1.0.0",
+  "description": "agent conversationnel",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lyloox/chatbot.git"
+  },
+  "keywords": [
+    "chatbot",
+    "nodejs",
+    "js"
+  ],
+  "author": "Laure Daumal <daumal_l@epita.fr>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lyloox/chatbot/issues"
+  },
+  "homepage": "https://github.com/Lyloox/chatbot#readme"
+}
