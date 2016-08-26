@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/Lyloox/chatbot/issues"
   },
-  "homepage": "https://github.com/Lyloox/chatbot#readme"
+  "homepage": "https://github.com/Lyloox/chatbot#readme",
+  "devDependencies": {
+    "mocha": "^3.0.2"
+  }
 }
