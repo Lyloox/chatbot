@@ -1,5 +1,7 @@
 // @flow
 'use strict';
+var https = require('https');
+var request = require('request');
 
 var str = 'Welcome in ChatBot!';
 console.log(str);
@@ -39,7 +41,7 @@ const firstEntityValue = (entities, entity) => {
     Array.isArray(entities[entity]) &&
     entities[entity].length > 0 &&
     entities[entity][0].value
-  ;
+    ;
   if (!val) {
     return null;
   }
@@ -59,15 +61,37 @@ const actions = {
     return new Promise(function (resolve, reject) {
       var location = firstEntityValue(entities, 'location');
       if (location) {
-        var forecastkey = {forecastToken};
-        console.log("get ", forecastkey);
-        context.forecast = 'sunny in ' + location; // we should call a weather API here
+
+        var forecastkey = forecastToken;
+        var url = 'https://api.forecast.io/forecast/';
+        // FIXME get lati&longi from location
+        var lati = 0;
+        var longi = 0;
+        var response = url + forecastkey + "/" + lati + "," + longi;
+
+        request(response, (error, resp, body) => {
+          if (error) { 
+            reject(error);
+          }
+
+          body = JSON.parse(body);
+          if (!error && resp.statusCode === 200) {
+            var summary = body.currently.summary;
+            var temperature = JSON.stringify(body.currently.temperature);
+            context.forecast = summary + ' in ' + location +
+              ' with a temperature of ' + temperature + ' Farenheit';
+          }
+
+        });
         delete context.missingLocation;
+
       } else {
         context.missingLocation = true;
         delete context.forecast;
       }
       return resolve(context);
+    }).catch((error) => {
+      console.log(error);
     });
   }
 };

@@ -23,14 +23,12 @@
   },
   "homepage": "https://github.com/Lyloox/chatbot#readme",
   "devDependencies": {
-    "filereader": "^0.10.3",
     "flow-bin": "^0.31.1",
     "mocha": "^3.0.2"
   },
   "dependencies": {
-    "file": "^0.2.2",
-    "filereader": "^0.10.3",
-    "glob": "^7.0.6",
-    "node-wit": "^4.1.0"
+    "http": "0.0.0",
+    "node-wit": "^4.1.0",
+    "request": "^2.74.0"
   }
 }
