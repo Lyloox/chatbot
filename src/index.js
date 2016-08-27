@@ -62,27 +62,33 @@ const actions = {
       var location = firstEntityValue(entities, 'location');
       if (location) {
 
-        var forecastkey = forecastToken;
-        var url = 'https://api.forecast.io/forecast/';
-        // FIXME get lati&longi from location
-        var lati = 0;
-        var longi = 0;
-        var response = url + forecastkey + "/" + lati + "," + longi;
-
-        request(response, (error, resp, body) => {
+        var gmap = "http://maps.google.com/maps/api/geocode/json?address=" + location + "&sensor=false";
+        request(gmap, (error, resp, body) => {
           if (error) { 
             reject(error);
           }
-
           body = JSON.parse(body);
           if (!error && resp.statusCode === 200) {
-            var summary = body.currently.summary;
-            var temperature = JSON.stringify(body.currently.temperature);
-            context.forecast = summary + ' in ' + location +
-              ' with a temperature of ' + temperature + ' Farenheit';
-          }
+            var lati = body.results[0].geometry.location.lat;
+            var lng  = body.results[0].geometry.location.lng;
+            var forecastio = 'https://api.forecast.io/forecast/' + forecastToken + "/" + lati + "," + lng;
 
+            request(forecastio, (error, resp, body) => {
+              if (error) { 
+                reject(error);
+              }
+
+              body = JSON.parse(body);
+              if (!error && resp.statusCode === 200) {
+                var summary = body.currently.summary;
+                var temperature = JSON.stringify(body.currently.temperature);
+                context.forecast = summary + ' in ' + location +
+              ' with a temperature of ' + temperature + ' Farenheit';
+              }
+            });
+          }
         });
+
         delete context.missingLocation;
 
       } else {
