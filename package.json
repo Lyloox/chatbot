@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "agent conversationnel",
   "main": "index.js",
+  "semistandard": {
+    "ignore": [
+        "test/"
+      ]
+  },
   "scripts": {
     "test": "make test",
     "flow": "flow; test $? -eq 0 -o $? -eq 2"
@@ -27,7 +32,9 @@
     "mocha": "^3.0.2"
   },
   "dependencies": {
+    "chai": "^3.5.0",
     "http": "0.0.0",
+    "mocha": "^3.0.2",
     "node-wit": "^4.1.0",
     "request": "^2.74.0"
   }

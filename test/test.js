@@ -1,7 +1,8 @@
+'use strict';
 var assert = require('assert');
+var chai = require('chai');
 // var should = require('should');
 // var expect = require('expect');
-// var chai = require('chai');
 // var unexpected = require('unexpected');
 
 describe('Array', function () {
@@ -11,3 +12,4 @@ describe('Array', function () {
     });
   });
 });
+
