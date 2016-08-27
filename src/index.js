@@ -1,6 +1,5 @@
 // @flow
 'use strict';
-var https = require('https');
 var request = require('request');
 
 var str = 'Welcome in ChatBot!';
@@ -8,14 +7,8 @@ console.log(str);
 
 let Wit = null;
 let interactive = null;
-try {
-  // if running from repo
-  Wit = require('../').Wit;
-  interactive = require('../').interactive;
-} catch (e) {
-  Wit = require('node-wit').Wit;
-  interactive = require('node-wit').interactive;
-}
+Wit = require('node-wit').Wit;
+interactive = require('node-wit').interactive;
 
 const accessToken = (() => {
   if (process.argv.length !== 4) {
@@ -50,8 +43,8 @@ const firstEntityValue = (entities, entity) => {
 
 const actions = {
   send (request, response) {
-    const {sessionId, context, entities} = request;
-    const {text, quickreplies} = response;
+    // const {sessionId, context, entities} = request;
+    // const {text, quickreplies} = response;
     return new Promise(function (resolve, reject) {
       console.log('sending...', JSON.stringify(response));
       return resolve();
@@ -61,20 +54,19 @@ const actions = {
     return new Promise(function (resolve, reject) {
       var location = firstEntityValue(entities, 'location');
       if (location) {
-
-        var gmap = "http://maps.google.com/maps/api/geocode/json?address=" + location + "&sensor=false";
+        var gmap = 'http://maps.google.com/maps/api/geocode/json?address=' + location + '&sensor=false';
         request(gmap, (error, resp, body) => {
-          if (error) { 
+          if (error) {
             reject(error);
           }
           body = JSON.parse(body);
           if (!error && resp.statusCode === 200) {
             var lati = body.results[0].geometry.location.lat;
-            var lng  = body.results[0].geometry.location.lng;
-            var forecastio = 'https://api.forecast.io/forecast/' + forecastToken + "/" + lati + "," + lng;
+            var lng = body.results[0].geometry.location.lng;
+            var forecastio = 'https://api.forecast.io/forecast/' + forecastToken + '/' + lati + ',' + lng;
 
             request(forecastio, (error, resp, body) => {
-              if (error) { 
+              if (error) {
                 reject(error);
               }
 
@@ -90,7 +82,6 @@ const actions = {
         });
 
         delete context.missingLocation;
-
       } else {
         context.missingLocation = true;
         delete context.forecast;
